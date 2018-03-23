@@ -1,5 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
+
+import Badge from "material-ui/Badge";
+import IconButton from "material-ui/IconButton";
+import Comment from "material-ui-icons/Comment"; //Icons are in PascalCase
 import Card, { CardContent } from "material-ui/Card";
 import Typography from "material-ui/Typography";
 
@@ -22,27 +26,48 @@ const styles = {
   }
 };
 
-const Comments = props => {
-  const { comments } = props;
 
-  return (
-    <div>
-      <Card className={styles.card}>
-        <CardContent>
-          <Typography className={styles.title} color="textSecondary">
-            {comments.name}
-          </Typography>
-          <Typography component="p">{comments.body}</Typography>
-          <Typography className={styles.pos} color="textSecondary">
-            Posted on - {comments.date || Date()} by <b>{comments.email}</b>
-          </Typography>
-        </CardContent>
-      </Card>
-    </div>
-  );
-};
+class PostComments extends Component {
+  state = {};
+  componentDidMount() {
+    this.setState({ commentsVisible: false });
+  }
+  toggleComments = this.toggleComments.bind(this);
 
-Comments.propTypes = {
-  comments: PropTypes.object
+  toggleComments() {
+    this.setState({
+      ...this.state,
+      commentsVisible: !this.state.commentsVisible
+    });
+  }
+  render() {
+    const { comments } = this.props;
+
+    return <div>
+        <IconButton onClick={this.toggleComments}>
+          <Badge badgeContent={comments.length} color="primary">
+            <Comment />
+          </Badge>
+        </IconButton>
+        {comments.map(comment => this.state.commentsVisible && 
+        <Card key={comment.id} className={styles.card}>
+          <CardContent>
+            <Typography className={styles.title} color="textSecondary">
+              {comment.name}
+            </Typography>
+            <Typography component="p">{comment.body}</Typography>
+            <Typography className={styles.pos} color="textSecondary">
+              Posted on - {comment.date || Date()} by <b>
+                {comment.email}
+              </b>
+            </Typography>
+          </CardContent>
+        </Card>
+        )}
+      </div>;
+  }
+}
+PostComments.propTypes = {
+  comments: PropTypes.array
 };
-export default Comments;
+export default PostComments;
