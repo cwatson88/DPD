@@ -7,17 +7,12 @@ import { ListItem, ListItemIcon, ListItemText } from "material-ui/List";
 // set the user information mainly cosmetic but when clicked
 // get the user posts and set them in state in the main app component
 const Users = props => {
-  return (
-    <div>
+  return <div>
       {props.users.map(user => (
         <div key={user.id} onClick={props.getPosts.bind(this, user.id)}>
-          <ListItem button>
+          <ListItem button className="user--profile-pictures">
             <ListItemIcon>
-              <img
-                src={`profile-pictures/${user.picture}`}
-                alt={user.name}
-                className="user--profile-pictures"
-              />
+              <img src={`profile-pictures/${user.picture}`} alt={user.name} />
             </ListItemIcon>
             <ListItemText
               primary={
@@ -34,8 +29,7 @@ const Users = props => {
           </ListItem>
         </div>
       ))}
-    </div>
-  );
+    </div>;
 };
 
 Users.propTypes = {

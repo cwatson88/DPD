@@ -34,7 +34,7 @@ Section:Profile Pics
 */
 
 /* Override for the profile pictures */
-img.jss122.user--profile-pictures {
+.user--profile-pictures > img {
   border: 1px dotted;
   border-radius: 100%;
   height: 50px;
@@ -45,7 +45,7 @@ img.jss122.user--profile-pictures {
   padding-left: 5px;
 }
 /* animate the profile picture when hovered, spin ike a coin on its side */
-img.jss122.user--profile-pictures:hover {
+.user--profile-pictures > img:hover {
   animation: profile-picture-twist infinite 3s linear;
 }
 
