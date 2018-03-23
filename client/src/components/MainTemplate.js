@@ -108,9 +108,9 @@ class MiniDrawer extends React.Component {
             <IconButton color="inherit" aria-label="open drawer" onClick={this.handleDrawerOpen} className={classNames(classes.menuButton, this.state.open && classes.hide)}>
               <MenuIcon />
             </IconButton>
-            <img src={logo} height={"50px"}/>
+            <img src={logo} height={"50px"} />
             <Typography variant="title" color="inherit" noWrap>
-              La Poste and Comment App 
+              La Poste and Comment App
             </Typography>
           </Toolbar>
         </AppBar>
@@ -126,7 +126,7 @@ class MiniDrawer extends React.Component {
           </div>
           <Divider />
           {/* use the users list to make a left bar menu */}
-          <List className="user__sidebar">{this.props.UsersComponent}</List>
+          <List>{this.props.UsersComponent}</List>
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />

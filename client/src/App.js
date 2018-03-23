@@ -5,6 +5,7 @@ import "./App.css";
 import MainTemplate from "./components/MainTemplate";
 import Users from "./components/Users";
 import Posts from "./components/Posts";
+import Loader from "./components/Loader";
 
 class App extends Component {
   state = {
@@ -28,14 +29,14 @@ class App extends Component {
   async getPosts(userId, e) {
     const postApi = await axios.get(`/api/users/${userId}/posts`);
     const postData = postApi.data.map(async post => {
-      const comments = await axios.get(`api/posts/${post.id}/comments`); 
+      const comments = await axios.get(`api/posts/${post.id}/comments`);
       post["comments"] = comments.data; //axios returns .data with all the info, hence the .data
 
       return post;
     });
 
     // because the posts are in a map we need to promise all and ensure the await is there too!
-    const posts = await Promise.all(postData); 
+    const posts = await Promise.all(postData);
 
     this.setState({ ...this.state, posts });
   }
@@ -48,7 +49,11 @@ class App extends Component {
             <Users users={this.state.users} getPosts={this.getPosts} />
           }
         >
-          {this.state.posts && <Posts posts={this.state.posts} authors={this.state.users}/>}
+          {this.state.posts.length == 0 ? (
+            <Loader />
+          ) : (
+            <Posts posts={this.state.posts} authors={this.state.users} />
+          )}
         </MainTemplate>
       </div>
     );
