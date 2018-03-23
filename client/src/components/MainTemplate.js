@@ -1,5 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+
+//images
+import logo from "../package.svg"
+//Material's styles
 import { withStyles } from "material-ui/styles";
 import classNames from "classnames";
 import Drawer from "material-ui/Drawer";
@@ -12,6 +16,7 @@ import IconButton from "material-ui/IconButton";
 import MenuIcon from "material-ui-icons/Menu";
 import ChevronLeftIcon from "material-ui-icons/ChevronLeft";
 import ChevronRightIcon from "material-ui-icons/ChevronRight";
+
 
 const drawerWidth = 240;
 
@@ -103,8 +108,9 @@ class MiniDrawer extends React.Component {
             <IconButton color="inherit" aria-label="open drawer" onClick={this.handleDrawerOpen} className={classNames(classes.menuButton, this.state.open && classes.hide)}>
               <MenuIcon />
             </IconButton>
+            <img src={logo} height={"50px"}/>
             <Typography variant="title" color="inherit" noWrap>
-              La Poste and Comment App
+              La Poste and Comment App 
             </Typography>
           </Toolbar>
         </AppBar>
@@ -120,7 +126,7 @@ class MiniDrawer extends React.Component {
           </div>
           <Divider />
           {/* use the users list to make a left bar menu */}
-          <List>{this.props.UsersComponent}</List>
+          <List className="user__sidebar">{this.props.UsersComponent}</List>
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />

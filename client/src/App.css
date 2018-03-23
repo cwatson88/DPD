@@ -41,8 +41,8 @@ Section:Profile Pics
   width: 50px;
 }
 /* override for the padding on the profile pics - ensure almost center align */
-.MuiButtonBase-root-53.MuiListItem-root-112.MuiListItem-default-115.MuiListItem-gutters-119.MuiListItem-button-120 {
-  padding-left: 5px;
+.user__sidebar {
+  padding-left: 5px ;
 }
 /* animate the profile picture when hovered, spin ike a coin on its side */
 .user--profile-pictures > img:hover {
