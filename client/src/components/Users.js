@@ -12,9 +12,18 @@ const Users = props => {
         <div key={user.id} onClick={props.getPosts.bind(this, user.id)}>
           <ListItem button>
             <ListItemIcon>
-              <InboxIcon />
+              <img
+                src={`profile-pictures/${user.picture}`}
+                className="user--profile-pictures"
+              />
             </ListItemIcon>
-            <ListItemText primary="Inbox" />
+            <ListItemText primary={
+                <div>
+                    <b>UID:</b>{user.id}
+                    <br/>
+                    {user.email}
+                </div>
+            } />
           </ListItem>
         </div>
       ))}

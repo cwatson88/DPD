@@ -5,12 +5,13 @@ const Posts = props => {
   return (
     <div>
       {props.posts.map(post => (
-        <Fragment key={post.id}>
-        <p>{post.id}</p>
+        <div key={post.id} className="post__container">
+          <p>{post.id}</p>
           <h3>{post.title}</h3>
           <p>{post.body}</p>
-          <p>{post.body?post.body:new Date()}</p>
-        </Fragment>
+          <p>{post.date ? post.date : Date()}</p>
+          <hr/>
+        </div>
       ))}
     </div>
   );
