@@ -42,10 +42,13 @@ Section:Profile Pics
 }
 /* override for the padding on the profile pics - ensure almost center align */
 .user__sidebar {
-  width: 108px ;
+  width: 108px;
 }
 .MiniDrawer-drawerPaperClose-7 {
-  width: 95px !important;
+  width: 100px !important;
+}
+.jss18.jss20.jss94.jss6.jss7.jss95.jss99 {
+  width: 100px !important;
 }
 /* animate the profile picture when hovered, spin ike a coin on its side */
 .user--profile-pictures > img:hover {
@@ -74,16 +77,14 @@ Section:Posts
   text-align: left;
 }
 
-
 /* Cha Icons for loader */
-.loader{
-  font-family: 'Permanent Marker',
-  cursive;
-  color:#6884bb;
+.loader {
+  font-family: "Permanent Marker", cursive;
+  color: #6884bb;
 }
-.package__icon{
+.package__icon {
   transform: rotate(130deg);
-    /* animation: package__icon-animation  10s linear; */
+  /* animation: package__icon-animation  10s linear; */
 }
 /* @keyframes package__icon-animation {
   0% {
@@ -97,15 +98,14 @@ transform: rotate(130deg);
   } 
 } */
 
-.chat__icons{
+.chat__icons {
   position: relative;
   animation: chat__icons-animation infinite 3s linear;
 }
 
-@keyframes chat__icons-animation{
-
+@keyframes chat__icons-animation {
   0% {
-    top:-10px;
+    top: -10px;
     opacity: 0;
   }
 
@@ -118,6 +118,6 @@ transform: rotate(130deg);
 
   100% {
     opacity: 0;
-    top:100px;
+    top: 100px;
   }
 }
