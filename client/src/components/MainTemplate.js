@@ -13,6 +13,7 @@ import MenuIcon from "material-ui-icons/Menu";
 import ChevronLeftIcon from "material-ui-icons/ChevronLeft";
 import ChevronRightIcon from "material-ui-icons/ChevronRight";
 
+// icons and lins for the sidebar
 const mailFolderListItems = [];
 
 const drawerWidth = 240;
@@ -20,7 +21,7 @@ const drawerWidth = 240;
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: 430,
+    height: "100%",
     zIndex: 1,
     overflow: "hidden",
     position: "relative",
@@ -81,6 +82,8 @@ const styles = theme => ({
   }
 });
 
+// the main section holds all the components for the app
+// use children props to put all the other components into this main template
 class MiniDrawer extends React.Component {
   state = {
     open: false
@@ -97,42 +100,18 @@ class MiniDrawer extends React.Component {
   render() {
     const { classes, theme } = this.props;
 
-    return (
-      <div className={classes.root}>
-        <AppBar
-          position="absolute"
-          className={classNames(
-            classes.appBar,
-            this.state.open && classes.appBarShift
-          )}
-        >
+    return <div className={classes.root}>
+        <AppBar position="absolute" className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
           <Toolbar disableGutters={!this.state.open}>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={this.handleDrawerOpen}
-              className={classNames(
-                classes.menuButton,
-                this.state.open && classes.hide
-              )}
-            >
+            <IconButton color="inherit" aria-label="open drawer" onClick={this.handleDrawerOpen} className={classNames(classes.menuButton, this.state.open && classes.hide)}>
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit" noWrap>
-              Mini variant drawer
+              La Poste and Comment App
             </Typography>
           </Toolbar>
         </AppBar>
-        <Drawer
-          variant="permanent"
-          classes={{
-            paper: classNames(
-              classes.drawerPaper,
-              !this.state.open && classes.drawerPaperClose
-            )
-          }}
-          open={this.state.open}
-        >
+        <Drawer variant="permanent" classes={{ paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose) }} open={this.state.open}>
           <div className={classes.toolbar}>
             <IconButton onClick={this.handleDrawerClose}>
               {theme.direction === "rtl" ? (
@@ -143,14 +122,14 @@ class MiniDrawer extends React.Component {
             </IconButton>
           </div>
           <Divider />
-          <List>{mailFolderListItems}</List>
+          {/* use the users list to make a left bar menu */}
+          <List>{this.props.UsersComponent}</List>
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-         {this.props.children}
+          {this.props.children}
         </main>
-      </div>
-    );
+      </div>;
   }
 }
 

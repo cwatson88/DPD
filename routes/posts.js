@@ -2,17 +2,16 @@ var express = require("express");
 var router = express.Router();
 var posts = require("../data/posts.json");
 
-/* GET users listing. */
-router.get("/users/:userId/posts/:postId", function(req, res, next) {
-  // res.send('respond with a resource');
-
-  const { userId, postId } = req.params;
-    
-    if (isFinite(userId) && isFinite(postId)) {
+/* GET posts listing. */
+router.get("/users/:userId/posts", function(req, res, next) {
+  // deconstruct the params.userId 
+  const { userId } = req.params;
+    // ensure the user Id is a number and not null, string etc
+    if (isFinite(userId)) {
           
       const userPosts = posts.filter(
         post => {
-          if (post.userId == userId && post.id == postId) {
+          if (post.userId == userId) {
             return post;
           }
         }
