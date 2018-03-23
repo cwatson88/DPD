@@ -9,8 +9,7 @@ import Posts from "./components/Posts";
 class App extends Component {
   state = {
     users: [],
-    posts: [],
-    comments: []
+    posts: []
   };
 
   getPosts = this.getPosts.bind(this);
@@ -28,8 +27,17 @@ class App extends Component {
   // then set the state of posts to the result
   async getPosts(userId, e) {
     const postApi = await axios.get(`/api/users/${userId}/posts`);
-    const posts = postApi.data;
-    this.setState({ posts });
+    const postData = postApi.data.map(async post => {
+      const comments = await axios.get(`api/posts/${post.id}/comments`); 
+      post["comments"] = comments.data; //axios returns .data with all the info, hence the .data
+
+      return post;
+    });
+
+    // because the posts are in a map we need to promise all and ensure the await is there too!
+    const posts = await Promise.all(postData); 
+
+    this.setState({ ...this.state, posts });
   }
 
   render() {
@@ -40,7 +48,7 @@ class App extends Component {
             <Users users={this.state.users} getPosts={this.getPosts} />
           }
         >
-          {this.state.posts && <Posts posts={this.state.posts} />}
+          {this.state.posts && <Posts posts={this.state.posts} authors={this.state.users}/>}
         </MainTemplate>
       </div>
     );

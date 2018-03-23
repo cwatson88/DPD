@@ -39,7 +39,6 @@ img.MuiListItemIcon-root-122.user--profile-pictures {
   border-radius: 100%;
   height: 50px;
   width: 50px;
-  padding: 5px;
 }
 /* override for the padding on the profile pics - ensure almost center align */
 .MuiButtonBase-root-53.MuiListItem-root-112.MuiListItem-default-115.MuiListItem-gutters-119.MuiListItem-button-120 {
